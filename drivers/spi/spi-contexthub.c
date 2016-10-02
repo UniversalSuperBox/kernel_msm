@@ -356,7 +356,7 @@ static int spich_open(struct inode *inode, struct file *filp)
 {
 	struct spich_data *spich;
 	unsigned users;
-	unsigned uid = current_uid();
+	unsigned int uid = current_uid().val;
 
 	spich = container_of(inode->i_cdev, struct spich_data, cdev);
 
@@ -943,7 +943,7 @@ static unsigned int spich_poll(struct file *filp,
 	struct spich_data *spich;
 	unsigned int mask = 0;
 	unsigned users;
-	unsigned uid = current_uid();
+	unsigned uid = current_uid().val;
 
 	spich = filp->private_data;
 

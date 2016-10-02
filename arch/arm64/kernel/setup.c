@@ -91,6 +91,10 @@ static const char *cpu_name;
 static const char *machine_name;
 phys_addr_t __fdt_pointer __initdata;
 
+#if defined(CONFIG_VGA_CONSOLE) || defined(CONFIG_DUMMY_CONSOLE)                                               
+struct screen_info screen_info;                                                                                
+#endif
+
 /*
  * Standard memory resources
  */
@@ -419,9 +423,9 @@ void __init setup_arch(char **cmdline_p)
 
 #ifdef CONFIG_VT
 #if defined(CONFIG_VGA_CONSOLE)
-	conswitchp = &vga_con;
+	conswitchp = &vga_con;  
 #elif defined(CONFIG_DUMMY_CONSOLE)
-	conswitchp = &dummy_con;
+	conswitchp = &dummy_con; 
 #endif
 #endif
 	init_random_pool();
